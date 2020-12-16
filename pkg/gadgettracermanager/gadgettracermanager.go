@@ -5,12 +5,11 @@ import (
 	"context"
 	"crypto/rand"
 	"fmt"
-	"log"
 	"os"
 	"sync"
 	"unsafe"
 
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/tools/cache"
 
 	bpflib "github.com/iovisor/gobpf/elf"
@@ -317,29 +316,29 @@ func NewServerWithPodInformer(nodeName string) *GadgetTracerManager {
 }
 
 func NewServer(nodeName string) *GadgetTracerManager {
-	k8sClient, err := k8s.NewK8sClient(nodeName)
-	if err != nil {
-		return nil
-	}
+	//k8sClient, err := k8s.NewK8sClient(nodeName)
+	//if err != nil {
+	//	return nil
+	//}
 	// The CRI client is only used at the beginning to get the initial list
 	// of containers, it's not used after it.
-	defer k8sClient.CloseCRI()
+	//defer k8sClient.CloseCRI()
 
 	g := &GadgetTracerManager{
 		nodeName:   nodeName,
 		containers: make(map[string]pb.ContainerDefinition),
 		tracers:    make(map[string]tracer),
-		k8sClient:  k8sClient,
+		//k8sClient:  k8sClient,
 	}
 
-	containers, err := k8sClient.ListContainers()
-	if err != nil {
-		log.Printf("gadgettracermanager failed to list containers: %v", err)
-		for _, container := range containers {
-			g.containers[container.ContainerId] = container
-		}
-	} else {
-		log.Printf("gadgettracermanager found %d containers: %+v", len(containers), containers)
-	}
+	//containers, err := k8sClient.ListContainers()
+	//if err != nil {
+	//	log.Printf("gadgettracermanager failed to list containers: %v", err)
+	//	for _, container := range containers {
+	//		g.containers[container.ContainerId] = container
+	//	}
+	//} else {
+	//	log.Printf("gadgettracermanager found %d containers: %+v", len(containers), containers)
+	//}
 	return g
 }
