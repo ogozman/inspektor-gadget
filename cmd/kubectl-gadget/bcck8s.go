@@ -72,7 +72,7 @@ var capabilitiesCmd = &cobra.Command{
 var traceeCmd = &cobra.Command{
 	Use:   "tracee",
 	Short: "Trace various syscalls",
-	Run:   bccCmd("tracee", "/opt/tracee_exec"),
+	Run:   bccCmd("tracee", "/opt/tracee/tracee"),
 }
 
 var (
