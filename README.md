@@ -43,7 +43,7 @@ Available Commands:
   tcptop         Show the TCP traffic in a pod
   tcptracer      Trace tcp connect, accept and close
   traceloop      Get strace-like logs of a pod from the past
-  tracee         Use tracee to trace various events
+  tracee         Track various events
   version        Show version
 
 Flags:
